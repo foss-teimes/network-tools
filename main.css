@@ -1,16 +1,78 @@
+* {
+	padding 0px;
+	margin: 0px;
+}
+
+body {
+	padding-top: 2em;
+	background: silver;
+}
+
+body, input, textarea {
+    color: rgb(55, 55, 55);
+    font: 300 15px/1.625 "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+#wrapper {
+	background: white;
+	max-width: 1000px;
+	margin: 0px auto 2em;
+	border-radius: 5px;
+}
+
 #header {
     text-align: center;
+  	padding: 2.5em 0 0;
 }
+/*
 #header * {
-    margin: 0.2em;
+  	margin: 0 3%;
+}*/
+
+#subheader {
+	margin: 1em 0 0;
+	background-color: dimgray;
+	color: ghostwhite;
 }
+
+#subheader * {
+	font-weight: normal;
+}
+
 .smallfont {
     font-size: small;
 }
+
+#main {
+	padding: 2em;
+	background-color: lightgray;
+}
+
+form {
+	padding: 1.5em;
+	border-radius: 10px 10px 0 0;
+	background-color: white; 
+}
+
+#response {
+	padding: 1.5em;
+	border-radius: 0 0 10px 10px;
+	background-color: white; 
+	background-color: dimgray;
+	color: ghostwhite;
+}
+
+form p {
+	margin: 0.5em 0;
+	text-align: center;
+}
+
 #footer {
     text-align: center;
 }
+
 #footer p {
+	padding: 2em 0;
     font-family: sans-serif;
     text-decoration: none;
     font-size: 10px;

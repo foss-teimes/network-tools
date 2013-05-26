@@ -23,16 +23,22 @@
 </head>
 
 <body>
-<div id="header" class="clearfix">
-      <div id="site-logo"><a href="https://foss.tesyd.teimes.gr/" title="Home">
-        <img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
-      </a></div>
+<div id="wrapper">
 
-      <h1>Εργαλεία Δικτύου - Network Tools</h1>
-      <h5>Κοινότητα Ελεύθερου Λογισμικού και Λογισμικού Ανοιχτού Κώδικα ΤΕΙ Μεσολογγίου<br />
-          Free and Open Source Software Community of TEI of Messolonghi</h5>
+<div id="header" class="clearfix">
+    <div id="site-logo"><a href="https://foss.tesyd.teimes.gr/" title="Home">
+        <img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
+    </a></div>
+    <h5>Κοινότητα Ελεύθερου Λογισμικού και Λογισμικού Ανοιχτού Κώδικα ΤΕΙ Μεσολογγίου<br />
+        Free and Open Source Software Community of TEI of Messolonghi</h5>
+    <div id="subheader">
+        <h1>Εργαλεία Δικτύου - Network Tools</h1>
+    </div>
 </div>
 
+<div id="main">
+
+<div id="input_form">
 <form name="input" action="index.php" method="get"><p>
     <select name="service">
     <?php
@@ -61,6 +67,9 @@
     <input type="submit" name ="submit" value="Submit" /></p>
     <p class="smallfont">IPv4/IPv6 address example : www.google.com or google.com or 209.85.129.99 or 2a00:1450:4009:804::1003 - don't use 'http://' prefix</p>
 </form> 
+</div> <!-- input form -->
+
+<hr />
 
 <div id="response"><p>
 <?php
@@ -102,7 +111,7 @@ if(isset($_GET['submit']))
 	foreach($results as $result)
 	{
 		echo $result;
-		echo "</br>";
+		echo "</br>\n";
 	}
 	if($results == null)
 	{
@@ -113,10 +122,13 @@ if(isset($_GET['submit']))
 
 </p></div>
 
+</div> <!-- main -->
+
 <div id="footer">
     <hr />
     <p>Powered by <a href="https://foss.tesyd.teimes.gr/">foss.tesyd.teimes.gr</a></p>
 </div>
 
+</div> <!-- wrapper -->
 </body>
 </html>
