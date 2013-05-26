@@ -21,7 +21,7 @@
 </br>
 <body>
 <form name="input" action="index.php" method="get">
-<select name="servise">
+<select name="service">
 <option value="traceroute">traceroute</option>
 <option value="traceroute6">traceroute (IPv6)</option>
 <option value="ping">ping</option>
@@ -41,7 +41,7 @@ if(isset($_GET['submit']))
 	// http://php.net/manual/en/function.escapeshellcmd.php
 	// escapes #&;`|*?~<>^()[]{}$\, \x0A and \xFF. ' and " 
 	// are escaped only if they are not paired. 
-	$servise = trim($_GET['servise']);
+	$service = trim($_GET['service']);
 	$address = trim($_GET['address']);
     if( 
            (strpos($address,'/')>0)
@@ -50,23 +50,23 @@ if(isset($_GET['submit']))
 		echo "Don't be naughty!";
 		exit();
 	}
-	if($servise=="ping")
+	if($service=="ping")
 	{
 		exec("ping '".escapeshellcmd($address)."' -c 4",$results);
 	}
-	if($servise=="ping6")
+	if($service=="ping6")
 	{
 		exec("ping6 '".escapeshellcmd($address)."' -c 4",$results);
 	}
-	if($servise=="traceroute")
+	if($service=="traceroute")
 	{
 		exec("traceroute '".escapeshellcmd($address)."'",$results);
 	}
-        if($servise=="traceroute6")
+        if($service=="traceroute6")
 	{
 		exec("traceroute6 '".escapeshellcmd($address)."'",$results);
 	}
-	if($servise=="nslookup")
+	if($service=="nslookup")
 	{
 		exec("nslookup '".escapeshellcmd($address)."'",$results);
 	}
