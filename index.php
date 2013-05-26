@@ -29,8 +29,7 @@
     <div id="site-logo"><a href="https://foss.tesyd.teimes.gr/" title="Home">
         <img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
     </a></div>
-    <h5>Κοινότητα Ελεύθερου Λογισμικού και Λογισμικού Ανοιχτού Κώδικα ΤΕΙ Μεσολογγίου<br />
-        Free and Open Source Software Community of TEI of Messolonghi</h5>
+    <br />
     <div id="subheader">
         <h1>Εργαλεία Δικτύου - Network Tools</h1>
     </div>
@@ -126,7 +125,7 @@ if(isset($_GET['submit']))
 
 <div id="footer">
     <hr />
-    <p>Powered by <a href="https://foss.tesyd.teimes.gr/">foss.tesyd.teimes.gr</a></p>
+    <p>Powered by foss.tesyd.teimes.gr</p>
 </div>
 
 </div> <!-- wrapper -->
