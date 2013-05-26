@@ -5,14 +5,14 @@
  * HdkiLLeR(vpk) for security tips
  */
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
+<!DOCTYPE html>
+<html lang="el">
 <head>
 
-<META AUTHOR="Periklis Ntanasis a.k.a. Master_ex && Thomas Kapoulas a.k.a. tomkap">
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<meta charset="UTF-8" />
+<meta name="author" content="Periklis Ntanasis a.k.a. Master_ex &amp;&amp; Thomas Kapoulas a.k.a. tomkap" />
 <meta name="keywords" content="traceroute ping nslookup foss teimes ipv4 ipv6" />
 <meta name="description" content="free online network tools by foss.teimes" />
-<meta name="distribution" content="global" />
 
 <title>FOSS TEIMES - Network Tools</title>
 
@@ -111,7 +111,7 @@ if(isset($_GET['submit']))
 	foreach($results as $result)
 	{
 		echo $result;
-		echo "</br>\n";
+		echo "<br />\n";
 	}
 	if($results == null)
 	{
