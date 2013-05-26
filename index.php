@@ -12,11 +12,11 @@
 <meta name="keywords" content="traceroute ping nslookup foss teimes ipv4 ipv6" />
 <meta name="description" content="free online network tools by foss.teimes" />
 <meta name="distribution" content="global" />
-<title>foss.tesyd.teimes.gr &bull; Network Tools</title>
+<title>Κοινότητα ΕΛ/ΛΑΚ ΤΕΙ Μεσολογγίου &bull; Network Tools</title>
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" /> 
-<link rel="shortcut icon" href="http://foss.tesyd.teimes.gr/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="http://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
 </head>
-<center><a href="http://foss.aueb.gr/" target="_blank"><img style="border-style: none" align="left" src="http://foss.tesyd.teimes.gr/favicon.png" /></a><font size=6><b>FOSS AUEB - Network Tools</b></font></center>
+<center><a href="http://foss.aueb.gr/" target="_blank"><img style="border-style: none" align="left" src="http://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" /></a><font size=6><b>FOSS TEIMES - Network Tools</b></font></center>
 <h5> Κοινότητα Ελεύθερου Λογισμικού και Λογισμικού Ανοιχτού Κώδικα ΤΕΙ Μεσολογγίου<br/>Free and Open Source Software Community of TEI of Messolonghi</h5>
 </br>
 <body>
