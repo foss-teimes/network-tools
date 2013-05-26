@@ -71,7 +71,7 @@
     }
     ?>
     </select>
-    IP ADDRESS:
+    IP ADDRESS/HOSTNAME:
     <input type="text" name="address" value="<?php echo trim($_GET['address']); ?>"/>
     <input type="submit" name ="submit" value="Submit" /></p>
     <p class="smallfont">IPv4/IPv6 address example : www.google.com or google.com or 209.85.129.99 or 2a00:1450:4009:804::1003 - don't use 'http://' prefix</p>
