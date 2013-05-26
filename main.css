@@ -1,0 +1,17 @@
+#header {
+    text-align: center;
+}
+#header * {
+    margin: 0.2em;
+}
+.smallfont {
+    font-size: small;
+}
+#footer {
+    text-align: center;
+}
+#footer p {
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 10px;
+}

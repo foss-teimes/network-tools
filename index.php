@@ -7,34 +7,19 @@
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
 <head>
+
 <META AUTHOR="Periklis Ntanasis a.k.a. Master_ex && Thomas Kapoulas a.k.a. tomkap">
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
 <meta name="keywords" content="traceroute ping nslookup foss teimes ipv4 ipv6" />
 <meta name="description" content="free online network tools by foss.teimes" />
 <meta name="distribution" content="global" />
+
 <title>FOSS TEIMES - Network Tools</title>
-<link rel="icon" href="images/favicon.ico" type="image/x-icon" /> 
+
+<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="http://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
-<style type="text/css">
-    #header {
-        text-align: center;
-    }
-    #header * {
-        margin: 0.2em;
-    }
-    .smallfont {
-        font-size: small;
-    }
-    #footer {
-        text-align: center;
-    }
-    #footer p {
-        font-family: sans-serif;
-        text-decoration: none;
-        font-size: 10px;
-    }
-    
-</style>
+<link rel="stylesheet" href="main.css" type="text/css" media="all" />
+
 </head>
 
 <body>
