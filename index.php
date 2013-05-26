@@ -12,28 +12,57 @@
 <meta name="keywords" content="traceroute ping nslookup foss teimes ipv4 ipv6" />
 <meta name="description" content="free online network tools by foss.teimes" />
 <meta name="distribution" content="global" />
-<title>Κοινότητα ΕΛ/ΛΑΚ ΤΕΙ Μεσολογγίου &bull; Network Tools</title>
+<title>FOSS TEIMES - Network Tools</title>
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="http://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
+<style type="text/css">
+    #header {
+        text-align: center;
+    }
+    #header * {
+        margin: 0.2em;
+    }
+    .smallfont {
+        font-size: small;
+    }
+    #footer {
+        text-align: center;
+    }
+    #footer p {
+        font-family: sans-serif;
+        text-decoration: none;
+        font-size: 10px;
+    }
+    
+</style>
 </head>
-<center><a href="http://foss.aueb.gr/" target="_blank"><img style="border-style: none" align="left" src="http://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" /></a><font size=6><b>FOSS TEIMES - Network Tools</b></font></center>
-<h5> Κοινότητα Ελεύθερου Λογισμικού και Λογισμικού Ανοιχτού Κώδικα ΤΕΙ Μεσολογγίου<br/>Free and Open Source Software Community of TEI of Messolonghi</h5>
-</br>
+
 <body>
-<form name="input" action="index.php" method="get">
-<select name="service">
-<option value="traceroute">traceroute</option>
-<option value="traceroute6">traceroute (IPv6)</option>
-<option value="ping">ping</option>
-<option value="ping6">ping (IPv6)</option>
-<option value="nslookup">nslookup</option>
-</select>
-IP ADDRESS:
-<input type="text" name="address" />
-<input type="submit" name ="submit" value="Submit" />
+<div id="header" class="clearfix">
+      <div id="site-logo"><a href="https://foss.tesyd.teimes.gr/" title="Home">
+        <img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
+      </a></div>
+
+      <h1>Εργαλεία Δικτύου - Network Tools</h1>
+      <h5>Κοινότητα Ελεύθερου Λογισμικού και Λογισμικού Ανοιχτού Κώδικα ΤΕΙ Μεσολογγίου<br />
+          Free and Open Source Software Community of TEI of Messolonghi</h5>
+</div>
+
+<form name="input" action="index.php" method="get"><p>
+    <select name="service">
+        <option value="traceroute">traceroute</option>
+        <option value="traceroute6">traceroute (IPv6)</option>
+        <option value="ping">ping</option>
+        <option value="ping6">ping (IPv6)</option>
+        <option value="nslookup">nslookup</option>
+    </select>
+    IP ADDRESS:
+    <input type="text" name="address" value="<?php echo trim($_GET['address']); ?>"/>
+    <input type="submit" name ="submit" value="Submit" /></p>
+    <p class="smallfont">IPv4/IPv6 address example : www.google.com or google.com or 209.85.129.99 or 2a00:1450:4009:804::1003 - don't use 'http://' prefix</p>
 </form> 
-<font size=1>IPv4/IPv6 address example : www.google.com or google.com or 209.85.129.99 or 2a00:1450:4009:804::1003 - don't use 'http://' prefix </font>
-<hr>
+
+<div id="response"><p>
 <?php
 if(isset($_GET['submit']))
 {
@@ -79,12 +108,15 @@ if(isset($_GET['submit']))
 	{
 		echo "Address format error or address doesn't exist";
 	}
-	echo "<hr>";
 }
 ?>
-<center>
-<br/>
-<span style="font-family: sans-serif; text-decoration: none; font-size: 10px;">Powered by <a href="http://foss.tesyd.teimes.gr">foss.tesyd.teimes.gr</a> <(' )</span><br/>
-</center>
+
+</p></div>
+
+<div id="footer">
+    <hr />
+    <p>Powered by <a href="https://foss.tesyd.teimes.gr/">foss.tesyd.teimes.gr</a></p>
+</div>
+
 </body>
 </html>
