@@ -50,11 +50,26 @@
 
 <form name="input" action="index.php" method="get"><p>
     <select name="service">
-        <option value="traceroute">traceroute</option>
-        <option value="traceroute6">traceroute (IPv6)</option>
-        <option value="ping">ping</option>
-        <option value="ping6">ping (IPv6)</option>
-        <option value="nslookup">nslookup</option>
+    <?php
+    
+    $services_array = array(
+        "traceroute"  => "traceroute",
+        "traceroute6" => "traceroute (IPv6)",
+        "ping"        => "ping",
+        "ping6"       => "ping (IPv6)",
+        "nslookup"    => "nslookup",
+    );
+    
+    // List options programmatically
+    // output should look like
+    // <option value="ping" selected="selected">ping</option>
+    foreach($services_array as $s => $v) {
+        echo '    <option value="'.$s.'"';
+        if ($s == $_GET['service'])
+            echo ' selected="selected"';
+        echo '>'.$v.'</option>'."\n    ";
+    }
+    ?>
     </select>
     IP ADDRESS:
     <input type="text" name="address" value="<?php echo trim($_GET['address']); ?>"/>
