@@ -5,49 +5,40 @@
  * HdkiLLeR(vpk) for security tips
  */
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="el" xml:lang="el">
+<!DOCTYPE html>
+<html lang="el">
 <head>
-<META AUTHOR="Periklis Ntanasis a.k.a. Master_ex && Thomas Kapoulas a.k.a. tomkap">
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+
+<meta charset="UTF-8" />
+<meta name="author" content="Periklis Ntanasis a.k.a. Master_ex &amp;&amp; Thomas Kapoulas a.k.a. tomkap" />
 <meta name="keywords" content="traceroute ping nslookup foss teimes ipv4 ipv6" />
 <meta name="description" content="free online network tools by foss.teimes" />
-<meta name="distribution" content="global" />
+
 <title>FOSS TEIMES - Network Tools</title>
-<link rel="icon" href="images/favicon.ico" type="image/x-icon" /> 
+
+<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="http://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
-<style type="text/css">
-    #header {
-        text-align: center;
-    }
-    #header * {
-        margin: 0.2em;
-    }
-    .smallfont {
-        font-size: small;
-    }
-    #footer {
-        text-align: center;
-    }
-    #footer p {
-        font-family: sans-serif;
-        text-decoration: none;
-        font-size: 10px;
-    }
-    
-</style>
+<link rel="stylesheet" href="main.css" type="text/css" media="all" />
+
 </head>
 
 <body>
-<div id="header" class="clearfix">
-      <div id="site-logo"><a href="https://foss.tesyd.teimes.gr/" title="Home">
-        <img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
-      </a></div>
+<div id="wrapper">
 
-      <h1>Εργαλεία Δικτύου - Network Tools</h1>
-      <h5>Κοινότητα Ελεύθερου Λογισμικού και Λογισμικού Ανοιχτού Κώδικα ΤΕΙ Μεσολογγίου<br />
-          Free and Open Source Software Community of TEI of Messolonghi</h5>
+<div id="header" class="clearfix">
+    <div id="site-logo"><a href="https://foss.tesyd.teimes.gr/" title="Home">
+        <img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
+    </a></div>
+    <h5>Κοινότητα Ελεύθερου Λογισμικού και Λογισμικού Ανοιχτού Κώδικα ΤΕΙ Μεσολογγίου<br />
+        Free and Open Source Software Community of TEI of Messolonghi</h5>
+    <div id="subheader">
+        <h1>Εργαλεία Δικτύου - Network Tools</h1>
+    </div>
 </div>
 
+<div id="main">
+
+<div id="input_form">
 <form name="input" action="index.php" method="get"><p>
     <select name="service">
     <?php
@@ -76,6 +67,9 @@
     <input type="submit" name ="submit" value="Submit" /></p>
     <p class="smallfont">IPv4/IPv6 address example : www.google.com or google.com or 209.85.129.99 or 2a00:1450:4009:804::1003 - don't use 'http://' prefix</p>
 </form> 
+</div> <!-- input form -->
+
+<hr />
 
 <div id="response"><p>
 <?php
@@ -117,7 +111,7 @@ if(isset($_GET['submit']))
 	foreach($results as $result)
 	{
 		echo $result;
-		echo "</br>";
+		echo "<br />\n";
 	}
 	if($results == null)
 	{
@@ -128,10 +122,13 @@ if(isset($_GET['submit']))
 
 </p></div>
 
+</div> <!-- main -->
+
 <div id="footer">
     <hr />
     <p>Powered by <a href="https://foss.tesyd.teimes.gr/">foss.tesyd.teimes.gr</a></p>
 </div>
 
+</div> <!-- wrapper -->
 </body>
 </html>
