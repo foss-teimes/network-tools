@@ -30,7 +30,7 @@
         	<img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
 		</a>
 	</div>
-	<br /><?php $ip=$_SERVER['REMOTE_ADDR']; echo("Your IP address is <b>".$ip."</b>"); ?>
+	<br /><?php $ip=$_SERVER['REMOTE_ADDR']; echo("\t\tYour IP address is ".$ip); ?>
 	<div id="subheader">
         	<h1>Εργαλεία Δικτύου - Network Tools</h1>
 	</div>
