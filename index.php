@@ -1,8 +1,9 @@
 <?php
 /*
- * credits to:
- * c00kiemon5ter for various suggestions
- * HdkiLLeR(vpk) for security tips
+ * created by foss.aueb.gr
+ * 
+ * Thomas Kapoulas <tomkap@pebkac.gr>
+ * Nick Raptis <airscorp@gmail.com>
  */
 ?>
 <!DOCTYPE html>
@@ -124,7 +125,6 @@ if(isset($_GET['submit']))
 </div> <!-- main -->
 
 <div id="footer">
-    <hr />
     <p>Powered by foss.tesyd.teimes.gr</p>
 </div>
 
