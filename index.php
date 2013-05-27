@@ -9,35 +9,34 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-
 <meta charset="UTF-8" />
 <meta name="author" content="Periklis Ntanasis a.k.a. Master_ex &amp;&amp; Thomas Kapoulas a.k.a. tomkap" />
 <meta name="keywords" content="traceroute ping nslookup foss teimes ipv4 ipv6" />
 <meta name="description" content="free online network tools by foss.teimes" />
 
-<title>FOSS TEIMES - Network Tools</title>
+<title>Εργαλεία Δικτύου - Network Tools | Κοινότητα ΕΛ/ΛΑΚ ΤΕΙ Μεσολογγίου</title>
 
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="http://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="main.css" type="text/css" media="all" />
-
 </head>
 
 <body>
 <div id="wrapper">
 
 <div id="header" class="clearfix">
-    <div id="site-logo"><a href="https://foss.tesyd.teimes.gr/" title="Home">
-        <img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
-    </a></div>
-    <br />
-    <div id="subheader">
-        <h1>Εργαλεία Δικτύου - Network Tools</h1>
-    </div>
+	<div id="site-logo">
+		<a href="https://foss.tesyd.teimes.gr/" title="Home">
+        	<img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
+		</a>
+	</div>
+	<br /><?php $ip=$_SERVER['REMOTE_ADDR']; echo("Your IP address is ".$ip); ?>
+	<div id="subheader">
+        	<h1>Εργαλεία Δικτύου - Network Tools</h1>
+	</div>
 </div>
 
 <div id="main">
-
 <div id="input_form">
 <form name="input" action="index.php" method="get"><p>
     <select name="service">
