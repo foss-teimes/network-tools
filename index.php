@@ -6,6 +6,7 @@
  * Nick Raptis <airscorp@gmail.com>
  */
 ?>
+<?php header('Content-Type: text/html; charset=utf-8'); ?>
 <!DOCTYPE html>
 <html lang="el">
 <head>
