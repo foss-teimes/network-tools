@@ -18,7 +18,7 @@
 <title>Εργαλεία Δικτύου - Network Tools | Κοινότητα ΕΛ/ΛΑΚ ΤΕΙ Μεσολογγίου</title>
 
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="shortcut icon" href="http://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="https://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="main.css" type="text/css" media="all" />
 </head>
 
@@ -31,7 +31,7 @@
         	<img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
 		</a>
 	</div>
-	<br /><?php $ip=$_SERVER['REMOTE_ADDR']; echo("\t\tYour IP address is ".$ip); ?>
+	<br /><?php $ip=$_SERVER['REMOTE_ADDR']; echo("\t\t\tYour IP address is ".$ip); ?>
 	<div id="subheader">
         	<h1>Εργαλεία Δικτύου - Network Tools</h1>
 	</div>
