@@ -45,9 +45,7 @@
 
    $services_array = array(
         "traceroute"  => "traceroute",
-        "traceroute6" => "traceroute (IPv6)",
         "ping"        => "ping",
-        "ping6"       => "ping (IPv6)",
         "nslookup"    => "nslookup",
     );
     
@@ -81,7 +79,7 @@ if(isset($_GET['submit']))
 	// are escaped only if they are not paired. 
 	$service = trim($_GET['service']);
 	$address = trim($_GET['address']);
-        $results = null;
+	$results = null;
     if( 
            (strpos($address,'/')>0)
         || (strpos($address,'/')===0) )
@@ -89,25 +87,31 @@ if(isset($_GET['submit']))
 		echo "Don't be naughty!";
 		exit();
 	}
-	if($service=="ping")
+	elseif($service=="nslookup")
 	{
-		exec("ping '".escapeshellcmd($address)."' -c 4",$results);
+	    exec("nslookup '".escapeshellcmd($address)."'",$results);   
 	}
-	if($service=="ping6")
+	elseif(strpos($address, ".") > -1)
 	{
-		exec("ping6 '".escapeshellcmd($address)."' -c 4",$results);
+        if($service=="ping")
+        {
+            exec("ping '".escapeshellcmd($address)."' -c 4",$results);
+        }
+        elseif($service=="traceroute")
+	    {
+		    exec("traceroute '".escapeshellcmd($address)."'",$results);
+	    }
 	}
-	if($service=="traceroute")
+	else
 	{
-		exec("traceroute '".escapeshellcmd($address)."'",$results);
-	}
-        if($service=="traceroute6")
-	{
-		exec("traceroute6 '".escapeshellcmd($address)."'",$results);
-	}
-	if($service=="nslookup")
-	{
-		exec("nslookup '".escapeshellcmd($address)."'",$results);
+	    if($service=="ping")
+	    {
+		    exec("ping6 '".escapeshellcmd($address)."' -c 4",$results);
+	    }
+	    elseif($service=="traceroute")
+        {
+		    exec("traceroute6 '".escapeshellcmd($address)."'",$results);
+	    }
 	}
 	foreach($results as $result)
 	{
