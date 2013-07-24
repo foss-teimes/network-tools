@@ -42,6 +42,14 @@
 <form name="input" action="index.php" method="get"><p>
     <select name="service">
     <?php
+    if(isset($_GET['address']))
+    {
+        $queryIP = $_GET['address'];
+    }
+    else
+    {
+        $queryIP = $ip;
+    }
 
     if(strpos($ip, ".") > -1)
     {
