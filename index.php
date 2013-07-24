@@ -31,7 +31,6 @@
         	<img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
 		</a>
 	</div>
-	<br /><?php $ip=$_SERVER['REMOTE_ADDR']; echo("Your IP address is ".$ip); ?>
 	<div id="subheader">
         	<h1>Εργαλεία Δικτύου - Network Tools</h1>
 	</div>
@@ -41,7 +40,7 @@
 <div id="input_form">
 <form name="input" action="index.php" method="get"><p>
     <select name="service">
-    <?php
+<?php
 
    $services_array = array(
         "traceroute"  => "traceroute",
@@ -52,16 +51,16 @@
     // List options programmatically
     // output should look like
     // <option value="ping" selected="selected">ping</option>
-    foreach($services_array as $s => $v) {
+    foreach ($services_array as $s => $v) {
         echo '    <option value="'.$s.'"';
         if (isset($_GET['service']) && $s == $_GET['service'])
             echo ' selected="selected"';
         echo '>'.$v.'</option>'."\n    ";
     }
-    ?>
+?>
     </select>
     IP ADDRESS/HOSTNAME:
-    <input type="text" name="address" value="<?php echo (isset($_GET['submit']) ? trim($_GET['address']) : $ip); ?>"/>
+    <input type="text" name="address" value="<?php $ip=$_SERVER['REMOTE_ADDR']; echo (isset($_GET['submit']) ? trim($_GET['address']) : $ip); ?>"/>
     <input type="submit" name ="submit" value="Submit" /></p>
     <p class="smallfont">IPv4/IPv6 address example : www.google.com or google.com or 209.85.129.99 or 2a00:1450:4009:804::1003 - don't use 'http://' prefix</p>
 </form> 
@@ -80,46 +79,40 @@ if(isset($_GET['submit']))
 	$service = trim($_GET['service']);
 	$address = trim($_GET['address']);
 	$results = null;
-    if( 
-           (strpos($address,'/')>0)
-        || (strpos($address,'/')===0) )
-	{
+	if ( (strpos($address,'/')>0) || (strpos($address,'/')===0) ) {
 		echo "Don't be naughty!";
 		exit();
 	}
-	elseif($service=="nslookup")
-	{
+
+	elseif ($service=="nslookup") {
 	    exec("nslookup '".escapeshellcmd($address)."'",$results);   
 	}
-	elseif(strpos($address, ".") > -1)
-	{
-        if($service=="ping")
-        {
-            exec("ping '".escapeshellcmd($address)."' -c 4",$results);
-        }
-        elseif($service=="traceroute")
-	    {
-		    exec("traceroute '".escapeshellcmd($address)."'",$results);
-	    }
+
+	elseif (strpos($address, ".") > -1) {
+		if($service=="ping") {
+			exec("ping '".escapeshellcmd($address)."' -c 4",$results);
+		}
+        
+		elseif ($service=="traceroute") {
+			exec("traceroute '".escapeshellcmd($address)."'",$results);
+		}
 	}
-	else
-	{
-	    if($service=="ping")
-	    {
-		    exec("ping6 '".escapeshellcmd($address)."' -c 4",$results);
-	    }
-	    elseif($service=="traceroute")
-        {
-		    exec("traceroute6 '".escapeshellcmd($address)."'",$results);
-	    }
+
+	else {
+		if($service=="ping") {
+			exec("ping6 '".escapeshellcmd($address)."' -c 4",$results);
+		}
+		elseif($service=="traceroute") {
+			exec("traceroute6 '".escapeshellcmd($address)."'",$results);
+		}
 	}
-	foreach($results as $result)
-	{
+	
+	foreach ($results as $result) {
 		echo $result;
 		echo "<br />\n";
 	}
-	if($results == null)
-	{
+	
+	if ($results == null) {
 		echo "Address format error or address doesn't exist";
 	}
 }
