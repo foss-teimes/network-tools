@@ -43,7 +43,7 @@
     <select name="service">
     <?php
 
-    if(strpos($ip, ":") === false)
+    if(strpos($ip, ".") > -1)
     {
         $services_array = array(
             "traceroute" => "traceroute",
