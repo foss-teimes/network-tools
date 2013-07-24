@@ -42,28 +42,45 @@
 <form name="input" action="index.php" method="get"><p>
     <select name="service">
     <?php
-    
-    $services_array = array(
+
+    if(strpos($ip, ":") === false)
+    {
+        $services_array = array(
+            "traceroute" => "traceroute",
+            "ping"       => "ping",
+            "nslookup"   => "nslookup",
+        );
+    }
+    else
+    {
+        $services_array = array(
+            "traceroute6" => "traceroute (IPv6)",
+            "ping6"        => "ping (IPv6)",
+            "nslookup"    => "nslookup",
+        );
+    }
+
+   /* $services_array = array(
         "traceroute"  => "traceroute",
         "traceroute6" => "traceroute (IPv6)",
         "ping"        => "ping",
         "ping6"       => "ping (IPv6)",
         "nslookup"    => "nslookup",
-    );
+    );*/
     
     // List options programmatically
     // output should look like
     // <option value="ping" selected="selected">ping</option>
     foreach($services_array as $s => $v) {
         echo '    <option value="'.$s.'"';
-        if ($s == $_GET['service'])
+        if (isset($_GET['service']) && $s == $_GET['service'])
             echo ' selected="selected"';
         echo '>'.$v.'</option>'."\n    ";
     }
     ?>
     </select>
     IP ADDRESS/HOSTNAME:
-    <input type="text" name="address" value="<?php echo trim($_GET['address']); ?>"/>
+    <input type="text" name="address" value="<?php echo (isset($_GET['submit']) ? trim($_GET['address']) : $ip); ?>"/>
     <input type="submit" name ="submit" value="Submit" /></p>
     <p class="smallfont">IPv4/IPv6 address example : www.google.com or google.com or 209.85.129.99 or 2a00:1450:4009:804::1003 - don't use 'http://' prefix</p>
 </form> 
@@ -81,6 +98,7 @@ if(isset($_GET['submit']))
 	// are escaped only if they are not paired. 
 	$service = trim($_GET['service']);
 	$address = trim($_GET['address']);
+        $results = null;
     if( 
            (strpos($address,'/')>0)
         || (strpos($address,'/')===0) )
