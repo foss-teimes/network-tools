@@ -51,7 +51,7 @@
         $queryIP = $ip;
     }
 
-    if(strpos($ip, ".") > -1)
+    if(strpos($queryIP, ".") > -1)
     {
         $services_array = array(
             "traceroute" => "traceroute",
