@@ -42,14 +42,31 @@
 <form name="input" action="index.php" method="get"><p>
     <select name="service">
     <?php
-    
-    $services_array = array(
+
+    if(strpos($ip, ":") === false)
+    {
+        $services_array = array(
+            "traceroute" => "traceroute",
+            "ping"       => "ping",
+            "nslookup"   => "nslookup",
+        );
+    }
+    else
+    {
+        $services_array = array(
+            "traceroute6" => "traceroute (IPv6)",
+            "ping"        => "ping (IPv6)",
+            "nslookup"    => "nslookup",
+        );
+    }
+
+   /* $services_array = array(
         "traceroute"  => "traceroute",
         "traceroute6" => "traceroute (IPv6)",
         "ping"        => "ping",
         "ping6"       => "ping (IPv6)",
         "nslookup"    => "nslookup",
-    );
+    );*/
     
     // List options programmatically
     // output should look like
@@ -81,6 +98,7 @@ if(isset($_GET['submit']))
 	// are escaped only if they are not paired. 
 	$service = trim($_GET['service']);
 	$address = trim($_GET['address']);
+        $results = null;
     if( 
            (strpos($address,'/')>0)
         || (strpos($address,'/')===0) )
