@@ -46,6 +46,7 @@
         "traceroute"  => "traceroute",
         "ping"        => "ping",
         "nslookup"    => "nslookup",
+	"host"        => "host",
     );
     
     // List options programmatically
@@ -84,8 +85,12 @@ if(isset($_GET['submit']))
 		exit();
 	}
 
+	elseif ($service=="host") {
+		exec("host '".escapeshellcmd($address)."'",$results);
+	}
+
 	elseif ($service=="nslookup") {
-	    exec("nslookup '".escapeshellcmd($address)."'",$results);   
+		exec("nslookup '".escapeshellcmd($address)."'",$results);   
 	}
 
 	elseif (strpos($address, ".") > -1) {
