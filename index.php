@@ -84,7 +84,7 @@ if(isset($_GET['submit']))
 	}
 	
 	elseif ($service=="whois") {
-		exec("host '".escapeshellcmd($address)."'",$results);
+		exec("whois '".escapeshellcmd($address)."'",$results);
 	}
 
 	elseif ($service=="host") {
