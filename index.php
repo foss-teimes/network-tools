@@ -47,6 +47,7 @@
         "ping"        => "ping",
         "nslookup"    => "nslookup",
 	"host"        => "host",
+	"whois"       => "whois",
     );
     
     // List options programmatically
@@ -80,6 +81,10 @@ if(isset($_GET['submit']))
 	if ( (strpos($address,'/')>0) || (strpos($address,'/')===0) ) {
 		echo "Don't be naughty!";
 		exit();
+	}
+	
+	elseif ($service=="whois") {
+		exec("host '".escapeshellcmd($address)."'",$results);
 	}
 
 	elseif ($service=="host") {
