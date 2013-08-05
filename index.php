@@ -87,10 +87,6 @@ if(isset($_GET['submit']))
 		exec("whois '".escapeshellcmd($address)."'",$results);
 	}
 
-	elseif ($service=="host") {
-		exec("host '".escapeshellcmd($address)."'",$results);
-	}
-
 	elseif ($service=="nslookup") {
 		exec("nslookup '".escapeshellcmd($address)."'",$results);   
 	}
