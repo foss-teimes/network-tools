@@ -46,7 +46,6 @@
         "traceroute"  => "traceroute",
         "ping"        => "ping",
         "nslookup"    => "nslookup",
-	"host"        => "host",
 	"whois"       => "whois",
     );
     
