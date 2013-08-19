@@ -1,7 +1,8 @@
 <?php
 /*
  * created by foss.aueb.gr
- * 
+ * extended by foss.tesyd.teimes.gr 
+ *
  * Thomas Kapoulas <tomkap@pebkac.gr>
  * Nick Raptis <airscorp@gmail.com>
  * Charalampos Kostas <root@charkost.gr>
@@ -23,7 +24,7 @@
 <link rel="stylesheet" href="main.css" type="text/css" media="all" />
 
 <script>
-function ajaxGet(url, id, interval) {
+function ajaxGet(url, element_id, interval_toclear) {
 
 	var xmlhttp;
 	
@@ -33,13 +34,13 @@ function ajaxGet(url, id, interval) {
 	else { // code for IE6, IE5
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	if (id) {
+	if (element_id) {
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				document.getElementById(id).innerHTML=xmlhttp.responseText;
+				document.getElementById(element_id).innerHTML=xmlhttp.responseText;
 				//When traceroute finises clear interval
 				if (xmlhttp.responseText.search("traceroute finised") > -1)
-					window.clearInterval(interval); 
+					window.clearInterval(interval_toclear); 
 			}
 		}
 	}
@@ -49,7 +50,7 @@ function ajaxGet(url, id, interval) {
 
 function manageTraceroute(form) {
 
-	var interval, version;
+	var interval;
 	var timestamp = new Date().valueOf();
 
 	//We want only traceroute & traceroute6 requests for now
@@ -59,16 +60,10 @@ function manageTraceroute(form) {
 	// Clear all intervals
 	var interval_id = window.setInterval("", 9999);
 	for (var i = 1; i < interval_id; i++)
-        window.clearInterval(i);
-
-	// Determine traceroute version from IP
-	if(form.address.value.search(".") > -1)
-		version = "traceroute";
-	else 
-		version = "traceroute6";
+		window.clearInterval(i);
 
 	// Start traceroute command
-	ajaxGet("traceroute.php?action=start&address="+form.address.value+"&version="+version+"&timestamp="+timestamp);
+	ajaxGet("traceroute.php?action=start&address="+form.address.value+"&timestamp="+timestamp);
 
 	// Check every 200 milliseconds for update
 	interval = window.setInterval(function() { ajaxGet("traceroute.php?action=display&timestamp="+timestamp, "resp", interval); }, 200);
@@ -85,42 +80,42 @@ function manageTraceroute(form) {
 <div id="header" class="clearfix">
 	<div id="site-logo">
 		<a href="https://foss.tesyd.teimes.gr/" title="Home">
-        	<img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
+			<img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
 		</a>
 	</div>
 	<div id="subheader">
-        	<h1>Εργαλεία Δικτύου - Network Tools</h1>
+		<h1>Εργαλεία Δικτύου - Network Tools</h1>
 	</div>
 </div>
 
 <div id="main">
 <div id="input_form">
 <form name="input" action="index.php" method="get" onsubmit="return manageTraceroute(this)"><p>
-    <select name="service">
+	<select name="service">
 <?php
 
-   $services_array = array(
-        "traceroute"  => "traceroute",
-        "ping"        => "ping",
-        "nslookup"    => "nslookup",
-	"whois"       => "whois",
-    );
-    
-    // List options programmatically
-    // output should look like
-    // <option value="ping" selected="selected">ping</option>
-    foreach ($services_array as $s => $v) {
-        echo '    <option value="'.$s.'"';
-        if (isset($_GET['service']) && $s == $_GET['service'])
-            echo ' selected="selected"';
-        echo '>'.$v.'</option>'."\n    ";
-    }
+	$services_array = array(
+		"traceroute"  => "traceroute",
+		"ping"        => "ping",
+		"nslookup"    => "nslookup",
+		"whois"       => "whois",
+	);
+
+	// List options programmatically
+	// output should look like
+	// <option value="ping" selected="selected">ping</option>
+	foreach ($services_array as $s => $v) {
+		echo '<option value="'.$s.'"';
+		if (isset($_GET['service']) && $s == $_GET['service'])
+			echo ' selected="selected"';
+		echo '>'.$v.'</option>'."\n    ";
+	}
 ?>
-    </select>
-    IP ADDRESS/HOSTNAME:
-    <input type="text" name="address" value="<?php $ip=$_SERVER['REMOTE_ADDR']; echo (isset($_GET['submit']) ? trim($_GET['address']) : $ip); ?>"/>
-    <input type="submit" name ="submit" value="Submit" /></p>
-    <p class="smallfont">IPv4/IPv6 address example : www.google.com or google.com or 209.85.129.99 or 2a00:1450:4009:804::1003 - don't use 'http://' prefix</p>
+	</select>
+	IP ADDRESS/HOSTNAME:
+	<input type="text" name="address" value="<?php $ip=$_SERVER['REMOTE_ADDR']; echo (isset($_GET['submit']) ? trim($_GET['address']) : $ip); ?>"/>
+	<input type="submit" name ="submit" value="Submit" /></p>
+	<p class="smallfont">IPv4/IPv6 address example : www.google.com or google.com or 209.85.129.99 or 2a00:1450:4009:804::1003 - don't use 'http://' prefix</p>
 </form> 
 </div> <!-- input form -->
 <div id="response"><p id="resp">
@@ -151,18 +146,11 @@ if(isset($_GET['submit']))
 		if($service=="ping") {
 			exec("ping '".escapeshellcmd($address)."' -c 4",$results);
 		}
-        
-		elseif ($service=="traceroute") {
-			exec("traceroute '".escapeshellcmd($address)."'",$results);
-		}
 	}
 
 	else {
 		if($service=="ping") {
 			exec("ping6 '".escapeshellcmd($address)."' -c 4",$results);
-		}
-		elseif($service=="traceroute") {
-			exec("traceroute6 '".escapeshellcmd($address)."'",$results);
 		}
 	}
 	
@@ -182,7 +170,7 @@ if(isset($_GET['submit']))
 </div> <!-- main -->
 
 <div id="footer">
-    <p>Powered by foss.tesyd.teimes.gr</p>
+	<p>Powered by foss.tesyd.teimes.gr</p>
 </div>
 
 </div> <!-- wrapper -->
