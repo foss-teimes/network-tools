@@ -10,7 +10,7 @@
 		// Remove old files from directory
 		foreach (glob($dir."*") as $file) {
 
-		if (filemtime($file) < time() - 86400) {
+		if (filemtime($file) < time() - 600) {
 		    unlink($file);
 		    }
 		}
