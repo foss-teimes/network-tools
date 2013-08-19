@@ -3,12 +3,12 @@
 	$dir = "/dev/shm/traceroute/";
 	$tracefile = $dir . $_SERVER[REMOTE_ADDR] . "_" . $_GET[timestamp];
 	$endmsg = "traceroute finised";
-	
+
 	// Start the execution of traceroute
 	if($_GET[action] == "start") {
 
 		// Remove old files from directory
-		foreach (glob($dir."*") as $file) {
+		foreach (glob($dir . "*") as $file) {
 
 		if (filemtime($file) < time() - 600) {
 		    unlink($file);
@@ -20,9 +20,9 @@
 			$version = "traceroute";
 		else
 			$version = "traceroute6";
-		
+
 		// Execute traceroute and add a custom "End of Execution" string for the client to recognize when to stop reading
-		exec("$version '".escapeshellcmd($_GET[address])."' > $tracefile; echo '$endmsg' >> $tracefile");
+		exec("$version '" . escapeshellcmd($_GET[address]) . "' > $tracefile; echo '$endmsg' >> $tracefile");
 	}
 	// Display the current state of traceroute execution
 	elseif ($_GET[action] == "display") {
