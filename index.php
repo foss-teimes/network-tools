@@ -37,8 +37,9 @@ function ajaxGet(url, id, interval) {
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				document.getElementById(id).innerHTML=xmlhttp.responseText;
+				//When traceroute finises clear interval
 				if (xmlhttp.responseText.search("traceroute finised") > -1)
-					window.clearInterval(interval);
+					window.clearInterval(interval); 
 			}
 		}
 	}
@@ -49,18 +50,28 @@ function ajaxGet(url, id, interval) {
 function manageTraceroute(form) {
 
 	var interval, version;
+	var timestamp = new Date().valueOf();
 
+	//We want only traceroute & traceroute6 requests for now
 	if(form.service.value != "traceroute" && form.service.value != "traceroute6")
 		return true;
 
+	// Clear all intervals
+	var interval_id = window.setInterval("", 9999);
+	for (var i = 1; i < interval_id; i++)
+        window.clearInterval(i);
+
+	// Determine traceroute version from IP
 	if(form.address.value.search(".") > -1)
 		version = "traceroute";
 	else 
 		version = "traceroute6";
 
-	ajaxGet("traceroute.php?action=start&address="+form.address.value+"&version="+version);
+	// Start traceroute command
+	ajaxGet("traceroute.php?action=start&address="+form.address.value+"&version="+version+"&timestamp="+timestamp);
 
-	interval = window.setInterval(function() { ajaxGet("traceroute.php?action=display", "resp", interval); }, 200);
+	// Check every 200 milliseconds for update
+	interval = window.setInterval(function() { ajaxGet("traceroute.php?action=display&timestamp="+timestamp, "resp", interval); }, 200);
 	
 	return false;
 }
