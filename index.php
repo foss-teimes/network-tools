@@ -4,6 +4,7 @@
  * 
  * Thomas Kapoulas <tomkap@pebkac.gr>
  * Nick Raptis <airscorp@gmail.com>
+ * Charalampos Kostas <root@charkost.gr>
  */
 ?>
 <?php header('Content-Type: text/html; charset=utf-8'); ?>
@@ -20,6 +21,51 @@
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="https://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="main.css" type="text/css" media="all" />
+
+<script>
+function ajaxGet(url, id, interval) {
+
+	var xmlhttp;
+	
+	if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else { // code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if (id) {
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				document.getElementById(id).innerHTML=xmlhttp.responseText;
+				if (xmlhttp.responseText.search("traceroute finised") > -1)
+					window.clearInterval(interval);
+			}
+		}
+	}
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+}
+
+function manageTraceroute(form) {
+
+	var interval, version;
+
+	if(form.service.value != "traceroute" && form.service.value != "traceroute6")
+		return true;
+
+	if(form.address.value.search(".") > -1)
+		version = "traceroute";
+	else 
+		version = "traceroute6";
+
+	ajaxGet("traceroute.php?action=start&address="+form.address.value+"&version="+version);
+
+	interval = window.setInterval(function() { ajaxGet("traceroute.php?action=display", "resp", interval); }, 200);
+	
+	return false;
+}
+</script>
+
 </head>
 
 <body>
@@ -38,7 +84,7 @@
 
 <div id="main">
 <div id="input_form">
-<form name="input" action="index.php" method="get"><p>
+<form name="input" action="index.php" method="get" onsubmit="return manageTraceroute(this)"><p>
     <select name="service">
 <?php
 
@@ -66,7 +112,7 @@
     <p class="smallfont">IPv4/IPv6 address example : www.google.com or google.com or 209.85.129.99 or 2a00:1450:4009:804::1003 - don't use 'http://' prefix</p>
 </form> 
 </div> <!-- input form -->
-<div id="response"><p>
+<div id="response"><p id="resp">
 <?php
 if(isset($_GET['submit']))
 {
