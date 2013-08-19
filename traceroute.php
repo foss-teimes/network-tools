@@ -1,7 +1,7 @@
 <?php
 	$endmsg = "traceroute finised";
 	$dir = "/dev/shm/traceroute/";
-	$tracefile = $dir.$_SERVER[REMOTE_ADDR];
+	$tracefile = $dir.$_SERVER[REMOTE_ADDR].$_GET[timestamp];
 
 	if($_GET[action] == "start") {
 		foreach (glob($dir."*") as $file) {
@@ -17,7 +17,7 @@
 		exec("echo '$endmsg' >> $tracefile");
 	}
 	elseif ($_GET[action] == "display") {
-		$content = nl2br(file_get_contents("/dev/shm/traceroute/$_SERVER[REMOTE_ADDR]"));
+		$content = nl2br(file_get_contents($tracefile));
 		echo $content;
 	}
 ?>
