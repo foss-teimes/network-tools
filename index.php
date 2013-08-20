@@ -81,14 +81,12 @@ function stream_exec($cmd) {
 	flush();
 
 	$process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());
-	$status = proc_get_status($process);
 
-	while ($status[running]) {
-		echo nl2br(fgets($pipes[1]));
+	while ($s = fgets($pipes[1])) {
+		echo nl2br($s);
 		ob_flush();
 		flush();
 		usleep(2000);
-		$status = proc_get_status($process);
 	}
 }
 
