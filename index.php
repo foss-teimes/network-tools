@@ -86,7 +86,6 @@ function stream_exec($cmd) {
 		echo nl2br($s);
 		ob_flush();
 		flush();
-		usleep(2000);
 	}
 }
 
