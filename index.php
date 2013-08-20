@@ -132,6 +132,7 @@ if(isset($_GET['submit']))
 			stream_exec("traceroute6 '".escapeshellcmd($address)."'");
 		}
 	}
+}
 ?>
 
 </p></div>
