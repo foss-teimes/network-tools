@@ -123,6 +123,7 @@ if(isset($_GET['submit']))
 			stream_exec("traceroute '".escapeshellcmd($address)."'");
 		}
 	}
+
 	else {
 		if($service=="ping") {
 			stream_exec("ping6 '".escapeshellcmd($address)."' -c 4");
@@ -130,6 +131,15 @@ if(isset($_GET['submit']))
 		elseif($service=="traceroute") {
 			stream_exec("traceroute6 '".escapeshellcmd($address)."'");
 		}
+	}
+	
+	foreach ($results as $result) {
+		echo $result;
+		echo "<br />\n";
+	}
+	
+	if ($results == null) {
+		echo "Address format error or address doesn't exist";
 	}
 }
 ?>
