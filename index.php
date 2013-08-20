@@ -13,7 +13,7 @@
 <html lang="el">
 <head>
 <meta charset="UTF-8" />
-<meta name="author" content="Periklis Ntanasis a.k.a. Master_ex &amp;&amp; Thomas Kapoulas a.k.a. tomkap &amp;&amp; Charalampos Kostas a.k.a charkost " />
+<meta name="author" content="Periklis Ntanasis a.k.a. Master_ex, Thomas Kapoulas a.k.a. tomkap, Charalampos Kostas a.k.a charkost " />
 <meta name="keywords" content="traceroute ping nslookup foss teimes ipv4 ipv6" />
 <meta name="description" content="free online network tools by foss.teimes" />
 
@@ -22,56 +22,6 @@
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="https://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="main.css" type="text/css" media="all" />
-
-<script>
-function ajaxGet(url, element_id, interval_toclear) {
-
-	var xmlhttp;
-
-	if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp = new XMLHttpRequest();
-	}
-	else { // code for IE6, IE5
-		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	if (element_id) {
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				document.getElementById(element_id).innerHTML = xmlhttp.responseText;
-				//When traceroute finises clear interval
-				if (xmlhttp.responseText.search("traceroute finised") > -1)
-					window.clearInterval(interval_toclear);
-			}
-		}
-	}
-	xmlhttp.open("GET", url, true);
-	xmlhttp.send();
-}
-
-function manageTraceroute(form) {
-
-	var interval;
-	var timestamp = new Date().valueOf();
-
-	//We want only traceroute & traceroute6 requests for now
-	if(form.service.value != "traceroute" && form.service.value != "traceroute6")
-		return true;
-
-	// Clear all intervals
-	var interval_id = window.setInterval("", 9999);
-	for (var i = 1; i < interval_id; i++)
-		window.clearInterval(i);
-
-	// Start traceroute command
-	ajaxGet("traceroute.php?action=start&address=" + form.address.value + "&timestamp=" + timestamp);
-
-	// Check every 200 milliseconds for update
-	interval = window.setInterval(function() { ajaxGet("traceroute.php?action=display&timestamp=" + timestamp, "resp", interval); }, 200);
-
-	return false;
-}
-</script>
-
 </head>
 
 <body>
@@ -90,7 +40,7 @@ function manageTraceroute(form) {
 
 <div id="main">
 <div id="input_form">
-<form name="input" action="index.php" method="get" onsubmit="return manageTraceroute(this)"><p>
+<form name="input" action="index.php" method="get"><p>
 	<select name="service">
 <?php
 
@@ -105,10 +55,10 @@ function manageTraceroute(form) {
 	// output should look like
 	// <option value="ping" selected="selected">ping</option>
 	foreach ($services_array as $s => $v) {
-		echo '<option value="' . $s . '"';
+		echo '<option value="'.$s.'"';
 		if (isset($_GET['service']) && $s == $_GET['service'])
 			echo ' selected="selected"';
-		echo '>' . $v . '</option>' . "\n";
+		echo '>'.$v.'</option>'."\n";
 	}
 ?>
 	</select>
@@ -118,8 +68,30 @@ function manageTraceroute(form) {
 	<p class="smallfont">IPv4/IPv6 address example : www.google.com or google.com or 209.85.129.99 or 2a00:1450:4009:804::1003 - don't use 'http://' prefix</p>
 </form>
 </div> <!-- input form -->
-<div id="response"><p id="resp">
+<div id="response"><p>
 <?php
+function stream_exec($cmd) {
+	$descriptorspec = array(
+		0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
+		1 => array("pipe", "w"),   // stdout is a pipe that the child will write to
+		2 => array("pipe", "w")    // stderr is a pipe that the child will write to
+	);
+
+	ob_flush();
+	flush();
+
+	$process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());
+	$status = proc_get_status($process);
+
+	while ($status[running]) {
+		echo nl2br(fgets($pipes[1]));
+		ob_flush();
+		flush();
+		usleep(2000);
+		$status = proc_get_status($process);
+	}
+}
+
 if(isset($_GET['submit']))
 {
 	// use of escapeshellcmd - must be enabled
@@ -128,38 +100,44 @@ if(isset($_GET['submit']))
 	// are escaped only if they are not paired.
 	$service = trim($_GET['service']);
 	$address = trim($_GET['address']);
-	$results = null;
 
-	if ( (strpos($address, '/') > 0) || (strpos($address, '/') === 0) ) {
+	if ( (strpos($address,'/')>0) || (strpos($address,'/')===0) ) {
 		echo "Don't be naughty!";
 		exit();
 	}
 
-	elseif ($service == "whois") {
-		exec("whois '" . escapeshellcmd($address) . "'", $results);
+	elseif ($service=="whois") {
+		echo nl2br( shell_exec("whois '".escapeshellcmd($address)."'") );
 	}
 
-	elseif ($service == "nslookup") {
-		exec("nslookup '" . escapeshellcmd($address) . "'", $results);
+	elseif ($service=="nslookup") {
+		echo nl2br( shell_exec("nslookup '".escapeshellcmd($address)."'") );
 	}
 
 	elseif (strpos($address, ".") > -1) {
-		if($service == "ping") {
-			exec("ping '" . escapeshellcmd($address) . "' -c 4", $results);
+		if($service=="ping") {
+			stream_exec("ping '".escapeshellcmd($address)."' -c 4");
+		}
+
+		elseif ($service=="traceroute") {
+			stream_exec("traceroute '".escapeshellcmd($address)."'");
 		}
 	}
 
 	else {
-		if($service == "ping") {
-			exec("ping6 '" . escapeshellcmd($address) . "' -c 4", $results);
+		if($service=="ping") {
+			stream_exec("ping6 '".escapeshellcmd($address)."' -c 4");
+		}
+		elseif($service=="traceroute") {
+			stream_exec("traceroute6 '".escapeshellcmd($address)."'");
 		}
 	}
-
+	
 	foreach ($results as $result) {
 		echo $result;
 		echo "<br />\n";
 	}
-
+	
 	if ($results == null) {
 		echo "Address format error or address doesn't exist";
 	}
@@ -171,7 +149,7 @@ if(isset($_GET['submit']))
 </div> <!-- main -->
 
 <div id="footer">
-	<p>Powered by foss.tesyd.teimes.gr</p>
+    <p>Powered by foss.tesyd.teimes.gr</p>
 </div>
 
 </div> <!-- wrapper -->
