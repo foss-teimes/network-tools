@@ -13,11 +13,11 @@
 <html lang="el">
 <head>
 <meta charset="UTF-8" />
-<meta name="author" content="Periklis Ntanasis a.k.a. Master_ex, Thomas Kapoulas a.k.a. tomkap, Charalampos Kostas a.k.a charkost " />
+<meta name="author" content="F/OSS TEI of Western Greece" />
 <meta name="keywords" content="traceroute ping nslookup foss teimes ipv4 ipv6" />
 <meta name="description" content="free online network tools by foss.teimes" />
 
-<title>Εργαλεία Δικτύου - Network Tools | Κοινότητα ΕΛ/ΛΑΚ ΤΕΙ Μεσολογγίου</title>
+<title>Εργαλεία Δικτύου - Network Tools | Κοινότητα ΕΛ/ΛΑΚ ΤΕΙ Δυτικής Ελλάδας</title>
 
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="https://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
@@ -30,7 +30,7 @@
 <div id="header" class="clearfix">
 	<div id="site-logo">
 		<a href="https://foss.tesyd.teimes.gr/" title="Home">
-			<img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
+			<img src="https://foss.tesyd.teimes.gr/sites/default/files/new_header.png" alt="Home" />
 		</a>
 	</div>
 	<div id="subheader">
