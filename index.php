@@ -45,7 +45,7 @@
 <?php
 
 	$services_array = array(
-		"traceroute"  => "traceroute -q1",
+		"traceroute"  => "traceroute",
 		"ping"        => "ping",
 		"nslookup"    => "nslookup",
 		"whois"       => "whois",
@@ -117,7 +117,7 @@ if(isset($_GET['submit']))
 		}
 
 		elseif ($service=="traceroute") {
-			stream_exec("traceroute '".escapeshellcmd($address)."'");
+			stream_exec("traceroute '".escapeshellcmd($address)."' -q1");
 		}
 	}
 
@@ -126,7 +126,7 @@ if(isset($_GET['submit']))
 			stream_exec("ping6 '".escapeshellcmd($address)."' -c 4");
 		}
 		elseif($service=="traceroute") {
-			stream_exec("traceroute6 '".escapeshellcmd($address)."'");
+			stream_exec("traceroute6 '".escapeshellcmd($address)."' -q1");
 		}
 	}
 }
