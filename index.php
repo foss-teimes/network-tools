@@ -1,7 +1,7 @@
 <?php
 /*
  * created by foss.aueb.gr
- * extended by foss.tesyd.teimes.gr
+ * extended by foss.teiwest.gr
  *
  * Thomas Kapoulas <tomkap@pebkac.gr>
  * Nick Raptis <airscorp@gmail.com>
@@ -45,7 +45,7 @@
 <?php
 
 	$services_array = array(
-		"traceroute"  => "traceroute",
+		"traceroute"  => "traceroute -q1",
 		"ping"        => "ping",
 		"nslookup"    => "nslookup",
 		"whois"       => "whois",
