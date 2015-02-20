@@ -23,7 +23,7 @@
 	<title>Εργαλεία Δικτύου - Network Tools | Κοινότητα ΕΛ/ΛΑΚ ΤΕΙ Μεσολογγίου</title>
 
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" href="https://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="http://foss.teiwest.gr/sites/default/files/favicon.ico" type="image/x-icon" />
 	<link rel="stylesheet" href="main.css" type="text/css" media="all" />
 </head>
 
@@ -33,8 +33,8 @@
 
 <div id="header" class="clearfix">
 	<div id="site-logo">
-		<a href="https://foss.tesyd.teimes.gr/network-tools/" title="Home">
-		<img src="https://foss.tesyd.teimes.gr/sites/default/files/tux-header.png" alt="Home" />
+		<a href="https://foss.teiwest.gr/network-tools/" title="Home">
+		<img src="https://foss.teiwest.gr/sites/default/files/tux-header.png" alt="Home" />
 		</a>
 	</div>
 	<div id="subheader">
