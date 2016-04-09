@@ -20,7 +20,7 @@
 <title>Εργαλεία Δικτύου - Network Tools | Κοινότητα ΕΛ/ΛΑΚ ΤΕΙ Δυτικής Ελλάδας</title>
 
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="shortcut icon" href="https://foss.tesyd.teimes.gr/sites/default/files/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="http://foss.teiwest.gr/sites/default/files/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="main.css" type="text/css" media="all" />
 </head>
 
@@ -29,8 +29,8 @@
 
 <div id="header" class="clearfix">
 	<div id="site-logo">
-		<a href="https://foss.tesyd.teimes.gr/" title="Home">
-			<img src="https://foss.tesyd.teimes.gr/sites/default/files/new_header.png" alt="Home" />
+		<a href="https://foss.teiwest.gr/" title="Home">
+			<img src="https://foss.teiwest.gr/sites/default/files/new_header.png" alt="Home" />
 		</a>
 	</div>
 	<div id="subheader">
@@ -137,7 +137,7 @@ if(isset($_GET['submit']))
 </div> <!-- main -->
 
 <div id="footer">
-    <p>Powered by foss.tesyd.teimes.gr</p>
+    <p>Powered by foss.teiwest.gr</p>
 </div>
 
 </div> <!-- wrapper -->
