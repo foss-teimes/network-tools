@@ -20,7 +20,7 @@
 <title>Εργαλεία Δικτύου - Network Tools | Κοινότητα ΕΛ/ΛΑΚ ΤΕΙ Δυτικής Ελλάδας</title>
 
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="shortcut icon" href="http://foss.teiwest.gr/sites/default/files/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="https://foss.teiwest.gr/sites/default/files/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="main.css" type="text/css" media="all" />
 </head>
 
