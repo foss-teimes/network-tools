@@ -104,7 +104,7 @@ if(isset($_GET['submit']))
 	}
 
 	elseif ($service=="whois") {
-		echo nl2br( shell_exec("whois '".escapeshellcmd($address)."'") );
+		echo nl2br( shell_exec("whois -h whois.ripe.net '".escapeshellcmd($address)."'") );
 	}
 
 	elseif ($service=="nslookup") {
